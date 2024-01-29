@@ -7,7 +7,7 @@ class Middleware{
             include_once $middleware_file;
         }
     }
-    public function runMiddleware($middleware=array(),$run=array('before'),$parameters=array()){
+    public function runMiddleware($middleware=array(),$run='before',$parameters=array()){
         if(!empty($middleware)){
             if(!is_array($middleware)){
                 $middleware = [$middleware];
@@ -23,7 +23,7 @@ class Middleware{
                 $midd[] = implode('',$arMid).'Middleware';
             }
 
-            if(in_array('before',$run)){
+            if($run == 'before'){
                 foreach($midd as $key_mid_class => $val_mid_class){
                     if(class_exists($val_mid_class)){
                         $instance_mid = new $val_mid_class();
@@ -32,11 +32,42 @@ class Middleware{
                 }
             }
 
-            if(in_array('after',$run)){
+            if($run == 'after'){
                 foreach($midd as $key_mid_class => $val_mid_class){
                     if(class_exists($val_mid_class)){
                         $instance_mid = new $val_mid_class();
                         $instance_mid->after($parameters);
+                    }
+                }
+            }
+        }
+    }
+    public function runMiddlewareGeneral($run='before'){
+        $middleware_file = ROOT_PATH.'/middleware/.default.php';
+        if(file_exists($middleware_file)){
+            include $middleware_file;
+
+            foreach($middleware_default as $key => $row){
+                $exclude = array();
+                $include = array();
+                if(!empty($row['exclude'])){
+                    $exclude = (!is_array($row['exclude']) ? [$row['exclude']] : $row['exclude']);
+                }
+                if(!empty($row['include'])){
+                    $include = (!is_array($row['include']) ? [$row['include']] : $row['include']);
+                }
+
+                if(!empty($include)){
+                    if(in_array($_GET['c'],$include)){
+                        $this->runMiddleware($key,$run);
+                    }
+                }
+                else{
+                    if(in_array($_GET['c'],$exclude)){
+
+                    }
+                    else{
+                        $this->runMiddleware($key,$run);
                     }
                 }
             }

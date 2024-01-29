@@ -16,11 +16,11 @@ class Component{
         $component_file = ROOT_PATH.'/components/'.$component.'.php';
         if(file_exists($component_file)){
 
-            MIDDLEWARE->runMiddleware($middleware,['before'],$parameters);
+            MIDDLEWARE->runMiddleware($middleware,'before',$parameters);
 
             include $component_file;
 
-            MIDDLEWARE->runMiddleware($middleware,['after'],$arResult);
+            MIDDLEWARE->runMiddleware($middleware,'after',$arResult);
 
         }
         else{

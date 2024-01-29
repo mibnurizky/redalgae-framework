@@ -57,11 +57,13 @@ define('EXECUTION',$CExecution);
 define('MIDDLEWARE',$CMiddleware);
 
 if(empty($_GET['c'])){
-    $CComponent->redirect('home');
+    $CComponent->redirect('auth.login');
 }
 
 EXECUTION->start('GENERAL');
-$CComponent->includeComponent($_GET['c'],[],['example']);
+MIDDLEWARE->runMiddlewareGeneral('before');
+$CComponent->includeComponent($_GET['c']);
+MIDDLEWARE->runMiddlewareGeneral('after');
 EXECUTION->end('GENERAL');
 if($CApp->show_execution_time){
     echo "<pre>";
