@@ -32,6 +32,9 @@ include_once ROOT_PATH.'/core/model.php';
 /** Include Model */
 include_once ROOT_PATH.'/core/execution.php';
 
+/** Include Middleware */
+include_once ROOT_PATH.'/core/middleware.php';
+
 /** Bootstrap */
 global $CComponent,$CApp,$CDatabase,$CModel;
 $CComponent = new Component();
@@ -41,6 +44,7 @@ $CModel = new Model();
 $CCache = new Cache();
 $CSession = new Session();
 $CExecution = new Execution();
+$CMiddleware = new Middleware();
 
 /** Defined */
 define('COMPONENT',$CComponent);
@@ -50,13 +54,14 @@ define('MODEL',$CModel);
 define('CACHE',$CCache);
 define('SESSION',$CSession);
 define('EXECUTION',$CExecution);
+define('MIDDLEWARE',$CMiddleware);
 
 if(empty($_GET['c'])){
     $CComponent->redirect('home');
 }
 
 EXECUTION->start('GENERAL');
-$CComponent->includeComponent($_GET['c']);
+$CComponent->includeComponent($_GET['c'],[],['example']);
 EXECUTION->end('GENERAL');
 if($CApp->show_execution_time){
     echo "<pre>";

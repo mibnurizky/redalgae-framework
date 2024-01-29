@@ -1,6 +1,6 @@
 <?php
 class Component{
-    public function includeComponent($component='',$direct=true){
+    public function includeComponent($component='',$parameters=array(),$middleware=array(),$direct=true){
         $app = new App();
         $CModel = new Model();
         $CCache = new Cache();
@@ -15,7 +15,33 @@ class Component{
 
         $component_file = ROOT_PATH.'/components/'.$component.'.php';
         if(file_exists($component_file)){
+
+            $midd = array();
+            foreach($middleware as $key_mid => $val_mid){
+                MIDDLEWARE->includeMiddleware($val_mid);
+                $mid_explode = explode('.',$val_mid);
+                $arMid = array();
+                foreach($mid_explode as $key_mid_ex => $val_mid_ex){
+                    $arMid[] = ucfirst($val_mid_ex);
+                }
+                $midd[] = implode('',$arMid).'Middleware';
+            }
+
+            foreach($midd as $key_mid_class => $val_mid_class){
+                if(class_exists($val_mid_class)){
+                    $instance_mid = new $val_mid_class();
+                    $instance_mid->before($parameters);
+                }
+            }
+
             include $component_file;
+
+            foreach($midd as $key_mid_class => $val_mid_class){
+                if(class_exists($val_mid_class)){
+                    $instance_mid = new $val_mid_class();
+                    $instance_mid->after($arResult);
+                }
+            }
         }
         else{
             if($direct){
@@ -46,6 +72,11 @@ class Component{
         $query = http_build_query($parameters);
         header('Location: ?'.$query,true,$response_code);
         exit();
+    }
+    public function routeto($component,$parameters=array()){
+        $parameters['c'] = $component;
+        $query = http_build_query($parameters);
+        return APP->base_url().'?'.$query;
     }
 }
 ?>
