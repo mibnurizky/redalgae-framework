@@ -26,10 +26,20 @@ function getDecrypt($string,$secret_key='74j5f3d'){
 
     return $output;
 }
+function documentRoot($path=''){
+    $php_self = str_replace('index.php','',$_SERVER['PHP_SELF']);
+    $document_root = $_SERVER['DOCUMENT_ROOT'].$php_self.$path;
+    $document_root = str_replace('//','/',$document_root);
+    $document_root = str_replace('///','/',$document_root);
+    return $document_root;
+}
 function responseJSON($response){
     header('Content-Type: application/json');
     echo json_encode($response);
     die();
+}
+function autoLoad(){
+    require_once documentRoot('/vendor/autoload.php');
 }
 
 ?>
