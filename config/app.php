@@ -1,7 +1,9 @@
 <?php
 
 $app_config = array(
-    'default_page' => 'test.index'
+    'base_url' => 'https://mole-cute-suitably.ngrok-free.app',
+    'default_page' => 'test.index',
+    'rewrite' => true
 );
 
 ?>

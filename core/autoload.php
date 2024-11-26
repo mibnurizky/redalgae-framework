@@ -56,13 +56,30 @@ define('SESSION',$CSession);
 define('EXECUTION',$CExecution);
 define('MIDDLEWARE',$CMiddleware);
 
-if(empty($_GET['c'])){
-    $CComponent->redirect($CApp->default_component);
+$path = ltrim($_SERVER['REQUEST_URI'], '/');
+$explode = explode('/',$path);
+
+if($CApp->config['rewrite']){
+    if(empty($explode[0])){
+        $CComponent->redirect($CApp->default_component);
+    }
+}
+else{
+    if(empty($_GET['c'])){
+        $CComponent->redirect($CApp->default_component);
+    }
 }
 
 EXECUTION->start('GENERAL');
 MIDDLEWARE->runMiddlewareGeneral('before');
-$CComponent->includeComponent($_GET['c']);
+
+if($CApp->config['rewrite']){
+    $CComponent->includeComponent($explode[0]);
+}
+else{
+    $CComponent->includeComponent($_GET['c']);
+}
+
 MIDDLEWARE->runMiddlewareGeneral('after');
 EXECUTION->end('GENERAL');
 if($CApp->show_execution_time){

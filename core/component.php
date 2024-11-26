@@ -25,7 +25,8 @@ class Component{
         }
         else{
             if($direct){
-                $this->redirect('error.404');
+                http_response_code(404);
+                $this->includeView('error.404');
                 exit();
             }
         }
@@ -48,10 +49,24 @@ class Component{
         }
     }
     public function redirect($component,$parameters=array(),$response_code=0){
-        $parameters['c'] = $component;
-        $query = http_build_query($parameters);
-        header('Location: ?'.$query,true,$response_code);
-        exit();
+        $app = new App();
+
+        if($app->config['rewrite']){
+            if(count($parameters) > 0){
+                $query = http_build_query($parameters);
+                header('Location: /'.$component.'?'.$query,true,$response_code);
+            }
+            else{
+                header('Location: /'.$component,true,$response_code);
+            }
+            exit();
+        }
+        else{
+            $parameters['c'] = $component;
+            $query = http_build_query($parameters);
+            header('Location: ?'.$query,true,$response_code);
+            exit();
+        }
     }
     public function routeto($component,$parameters=array()){
         $parameters['c'] = $component;
