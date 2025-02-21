@@ -5,7 +5,7 @@ $connection = array(
         'driver'        => 'mysql',
         'host'          => 'localhost',
         'port'          => '3307',
-        'dbname'        => 'filemanagement',
+        'dbname'        => 'amoeba',
         'username'      => 'root',
         'password'      => 'annonymous'
     )

@@ -58,6 +58,7 @@ define('MIDDLEWARE',$CMiddleware);
 
 $path = ltrim($_SERVER['REQUEST_URI'], '/');
 $explode = explode('/',$path);
+$explode = explode('?',$explode[0]);
 
 if($CApp->config['rewrite']){
     if(empty($explode[0])){
