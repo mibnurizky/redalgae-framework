@@ -27,6 +27,7 @@ class ComposerStaticInit80138012fe61908f787cde293ba1d530
         array (
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
     );
 
@@ -62,6 +63,10 @@ class ComposerStaticInit80138012fe61908f787cde293ba1d530
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
     );
 

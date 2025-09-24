@@ -1,14 +1,17 @@
 <?php
 
 function csrf_get_token($key){
-    $csrf = new Symfony\Component\Security\Csrf\CsrfTokenManager();
-    $token = $csrf->getToken($key)->getValue();
+    global $APP;
+    $csrf = new Csrf($APP->config['csrf_key']);
+    $token = $csrf->getToken($key);
     return $token;
 }
 
 function csrf_validate_token($key,$token){
-    $csrf = new Symfony\Component\Security\Csrf\CsrfTokenManager();
-    if($csrf->isTokenValid(new Symfony\Component\Security\Csrf\CsrfToken($key, $token))){
+    global $APP;
+    $csrf = new Csrf($APP->config['csrf_key']);
+
+    if($csrf->validate($key,$token)){
         return true;
     }
     else{

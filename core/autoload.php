@@ -41,6 +41,18 @@ include_once ROOT_PATH.'/core/middleware.php';
 /** Include Language */
 include_once ROOT_PATH.'/core/language.php';
 
+/** Include CSRF */
+include_once ROOT_PATH.'/core/csrf.php';
+
+/** Include Limiter */
+include_once ROOT_PATH.'/core/limiter.php';
+
+/** Include Email */
+include_once ROOT_PATH.'/core/email.php';
+
+/** SSP Datatable */
+include_once ROOT_PATH.'/core/ssp.php';
+
 /** Bootstrap */
 global $CComponent,$CApp,$CDatabase,$CModel,$CCache,$CSession,$CExecution,$CMiddleware;
 $CComponent = new Component();
@@ -51,7 +63,6 @@ $CCache = new Cache();
 $CSession = new Session(true);
 $CExecution = new Execution();
 $CMiddleware = new Middleware();
-$CLanguage = new Language();
 
 /** Defined */
 define('COMPONENT',$CComponent);
@@ -71,7 +82,19 @@ $GLOBALS['CACHE'] = $CCache;
 $GLOBALS['SESSION'] = $CSession;
 $GLOBALS['EXECUTION'] = $CExecution;
 $GLOBALS['MIDDLEWARE'] = $CMiddleware;
-$GLOBALS['LANGUAGE'] = $CLanguage;
+
+$phpinput = file_get_contents('php://input');
+$jsoninput = json_decode($phpinput,true);
+if(!empty($jsoninput)){
+    $_REQUEST = array_merge($_REQUEST,$jsoninput);
+}
+else{
+    $phpinputarray = array();
+    parse_str($phpinput, $phpinputarray);
+    if(is_array($phpinputarray) AND count($phpinputarray) > 0){
+        $_REQUEST = array_merge($_REQUEST,$phpinputarray);
+    }
+}
 
 $path = ltrim($_SERVER['REQUEST_URI'], '/');
 $explode = explode('/',$path);
@@ -88,8 +111,15 @@ else{
     }
 }
 
-EXECUTION->start('GENERAL');
-MIDDLEWARE->runMiddlewareGeneral('before');
+$CExecution->start('GENERAL');
+if($CApp->config['rewrite']) {
+    $GLOBALS['CURRENT_COMPONENT'] = $explode[0];
+    $CMiddleware->runMiddlewareGeneral('before',$explode[0]);
+}
+else{
+    $GLOBALS['CURRENT_COMPONENT'] = $_GET['c'];
+    $CMiddleware->runMiddlewareGeneral('before',$_GET['c']);
+}
 
 if($CApp->config['rewrite']){
     $CComponent->includeComponent($explode[0]);
@@ -98,10 +128,15 @@ else{
     $CComponent->includeComponent($_GET['c']);
 }
 
-MIDDLEWARE->runMiddlewareGeneral('after');
-EXECUTION->end('GENERAL');
+if($CApp->config['rewrite']) {
+    $CMiddleware->runMiddlewareGeneral('after',$explode[0]);
+}
+else{
+    $CMiddleware->runMiddlewareGeneral('after',$_GET['c']);
+}
+$CExecution->end('GENERAL');
 if($CApp->show_execution_time){
     echo "<pre>";
-    print_r(EXECUTION->calculate_all());
+    print_r($CExecution->calculate_all());
 }
 ?>

@@ -88,5 +88,17 @@ class Component{
             return $APP->base_url().'?'.$query;
         }
     }
+
+    public function isComponent($component){
+        $component = str_replace('.','/',$component);
+
+        $component_file = ROOT_PATH.'/components/'.$component.'.php';
+        if(file_exists($component_file)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
 ?>
