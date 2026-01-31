@@ -7,6 +7,13 @@ define('ROOT_PATH',$_SERVER['DOCUMENT_ROOT']);
 
 require_once ROOT_PATH . '/config/app.php';
 
+if (!empty($app_config['log_errors'])) {
+    ini_set('log_errors', '1');
+    ini_set('error_log', $app_config['error_log_path']);
+} else {
+    ini_set('log_errors', '0');
+}
+
 if (!empty($app_config['debug'])) {
     ini_set('display_errors', $app_config['display_errors'] ? '1' : '0');
     ini_set('display_startup_errors', '1');

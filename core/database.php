@@ -48,11 +48,11 @@ class Database{
 
     public function connect($return=false){
         try{
-            $conn = new PDO($this->driver.':host='.$this->host.'; port='.$this->port.'; dbname='.$this->dbname,$this->username,$this->password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn = new \PDO($this->driver.':host='.$this->host.'; port='.$this->port.'; dbname='.$this->dbname,$this->username,$this->password);
+            $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             return $conn;
         }
-        catch(PDOException $e){
+        catch(\PDOException $e){
             if($return){
                 return false;
             }
@@ -73,7 +73,7 @@ class Database{
             $query->execute((count($parameters) > 0 ? $parameters : null));
             return $query;
         }
-        catch(PDOException $e){
+        catch(\PDOException $e){
             $lasterror = $e->getMessage();
             return false;
         }
@@ -84,7 +84,7 @@ class Database{
         if(!$data){
             return false;
         }
-        $arData = $data->fetchAll(PDO::FETCH_ASSOC);
+        $arData = $data->fetchAll(\PDO::FETCH_ASSOC);
         return $arData;
     }
 

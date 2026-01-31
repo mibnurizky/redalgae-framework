@@ -15,6 +15,10 @@ class App{
         if(isset($app_config['base_url'])){
             $this->http_host = $app_config['base_url'];
         }
+
+        if(isset($app_config['show_execution_time']) AND !empty($app_config['show_execution_time'])){
+            $this->show_execution_time = $app_config['show_execution_time'];
+        }
     }
 
     public function base_url($url=''){

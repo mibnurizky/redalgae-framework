@@ -13,6 +13,7 @@ $app_config = array(
     'display_errors' => true,
     'log_errors' => true,
     'error_reporting' => E_ALL,
+    'show_execution_time' => true,
     'smtp' => array(
         'host' => 'smtp.gmail.com',
         'port' => 587,
