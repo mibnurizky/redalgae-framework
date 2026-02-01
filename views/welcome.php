@@ -1,2 +1,2 @@
 <?php
-echo "Welcome :0";
+echo "Welcome to the RedAlgae Framework!";

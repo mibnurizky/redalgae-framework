@@ -1,8 +1,8 @@
 <?php
 
 $app_config = array(
-    'app_name' => 'Amoeba Framework',
-    'app_name_first' => 'Amoeba',
+    'app_name' => 'RedAlgae Framework',
+    'app_name_first' => 'RedAlgae',
     'app_name_last' => 'Framework',
     'base_url' => 'https://'.$_SERVER['SERVER_NAME'],
     'default_page' => 'welcome',
@@ -12,6 +12,7 @@ $app_config = array(
     'debug' => true,
     'display_errors' => true,
     'log_errors' => true,
+    'error_log_path' => ROOT_PATH.'/writepath/logs/error.log',
     'error_reporting' => E_ALL,
     'show_execution_time' => false,
     'smtp' => array(
