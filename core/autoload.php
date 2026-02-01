@@ -56,7 +56,7 @@ foreach (glob(ROOT_PATH.'/helpers/*.php') as $filename)
 
 spl_autoload_register(function ($class) {
 
-    $prefix = 'Amoeba\\';
+    $prefix = 'RedAlgae\\';
     $baseDir = ROOT_PATH.'/';
 
     if (strncmp($prefix, $class, strlen($prefix)) !== 0) {
@@ -76,15 +76,15 @@ spl_autoload_register(function ($class) {
 
 /** Bootstrap */
 global $CComponent,$CApp,$CDatabase,$CModel,$CCache,$CSession,$CExecution,$CMiddleware;
-$CComponent = new \Amoeba\Core\Component();
-$CApp = new \Amoeba\Core\App();
-$CDatabase = new \Amoeba\Core\Database();
-$CModel = new \Amoeba\Core\Model();
-$CCache = new \Amoeba\Core\Cache();
-$CSession = new \Amoeba\Core\Session(true);
-$CExecution = new \Amoeba\Core\Execution();
-$CMiddleware = new \Amoeba\Core\Middleware();
-$CLanguage = new \Amoeba\Core\Language();
+$CComponent = new \RedAlgae\Core\Component();
+$CApp = new \RedAlgae\Core\App();
+$CDatabase = new \RedAlgae\Core\Database();
+$CModel = new \RedAlgae\Core\Model();
+$CCache = new \RedAlgae\Core\Cache();
+$CSession = new \RedAlgae\Core\Session(true);
+$CExecution = new \RedAlgae\Core\Execution();
+$CMiddleware = new \RedAlgae\Core\Middleware();
+$CLanguage = new \RedAlgae\Core\Language();
 
 /** Defined */
 define('COMPONENT',$CComponent);

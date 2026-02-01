@@ -1,9 +1,9 @@
 {
-    "name": "amoeba/framework",
+    "name": "redalgae/framework",
     "description": "A lightweight PHP framework for building web applications",
     "type": "project",
     "license": "MIT",
-    "homepage": "https://github.com/mibnurizky/amoeba-framework",
+    "homepage": "https://github.com/mibnurizky/redalgae-framework",
     "authors": [
         {
             "name": "Mohamad Ibnu Rizky",
@@ -22,10 +22,10 @@
     },
     "autoload": {
         "psr-4": {
-            "Amoeba\\": "core/",
-            "Amoeba\\Models\\": "models/",
-            "Amoeba\\Helpers\\": "helpers/",
-            "Amoeba\\Middleware\\": "middleware/"
+            "RedAlgae\\": "core/",
+            "RedAlgae\\Models\\": "models/",
+            "RedAlgae\\Helpers\\": "helpers/",
+            "RedAlgae\\Middleware\\": "middleware/"
         },
         "files": [
             "helpers/csrf_helper.php",

@@ -1,8 +1,8 @@
-# Amoeba Framework
+# RedAlgae Framework
 
 A lightweight, flexible PHP framework for building modern web applications with simplicity and performance.
 
-[![GitHub](https://img.shields.io/badge/GitHub-mibnurizky%2Famoeba--framework-blue)](https://github.com/mibnurizky/amoeba-framework)
+[![GitHub](https://img.shields.io/badge/GitHub-mibnurizky%2Fredalga--framework-blue)](https://github.com/mibnurizky/redalga-framework)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PHP Version](https://img.shields.io/badge/PHP-%3E%3D8.2-777BB4.svg)](https://www.php.net/)
 
@@ -29,7 +29,7 @@ A lightweight, flexible PHP framework for building modern web applications with 
 ### Using Composer (Recommended)
 
 ```bash
-composer create-project amoeba/framework my-project
+composer create-project redalga/framework my-project
 cd my-project
 ```
 
@@ -43,7 +43,7 @@ This automatically:
 ### Manual Setup
 
 ```bash
-git clone https://github.com/mibnurizky/amoeba-framework.git my-project
+git clone https://github.com/mibnurizky/redalga-framework.git my-project
 cd my-project
 composer install
 php install.php
@@ -110,7 +110,7 @@ Create `components/home.php`:
 class Home {
     public function index() {
         $data = [
-            'title' => 'Welcome to Amoeba Framework',
+            'title' => 'Welcome to RedAlgae Framework',
             'message' => 'Hello, World!'
         ];
         return view('home', $data);
@@ -141,9 +141,9 @@ Create a model in `models/User.php`:
 
 ```php
 <?php
-namespace Amoeba\Models;
+namespace RedAlgae\Models;
 
-use Amoeba\Model;
+use RedAlgae\Model;
 
 class User extends Model {
     protected $table = 'users';
@@ -315,9 +315,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- 🐛 Report bugs: [GitHub Issues](https://github.com/mibnurizky/amoeba-framework/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/mibnurizky/amoeba-framework/discussions)
-- 📖 Documentation: Check the [Wiki](https://github.com/mibnurizky/amoeba-framework/wiki)
+- 🐛 Report bugs: [GitHub Issues](https://github.com/mibnurizky/redalga-framework/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/mibnurizky/redalga-framework/discussions)
+- 📖 Documentation: Check the [Wiki](https://github.com/mibnurizky/redalga-framework/wiki)
 
 ## Author
 
@@ -327,4 +327,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Happy coding with Amoeba Framework!** 🦠
+**Happy coding with RedAlgae Framework!** 🦠

@@ -1,9 +1,9 @@
 <?php
-namespace Amoeba\Core;
+namespace RedAlgae\Core;
 class Session{
 
-    private $prefix = '_amoeba_';
-    private $table = '_amoeba_session';
+    private $prefix = '_redalgae_';
+    private $table = '_redalgae_session';
     private $usedb = false;
     private $sessid = '';
 
@@ -154,13 +154,13 @@ class Session{
     }
 
     public function flash_set($key,$data){
-        $key = 'amoeba_flash_'.$key;
+        $key = 'redalga_flash_'.$key;
         $this->set($key,$data);
         return true;
     }
 
     public function flash_get($key){
-        $key = 'amoeba_flash_'.$key;
+        $key = 'redalga_flash_'.$key;
         $data = $this->get($key);
         $this->del($key);
         return $data;
@@ -196,7 +196,7 @@ class Session{
         $db = new Database();
         $cache = new Cache();
 
-        $table_exists = $cache->get('__amoeba_session_table__');
+        $table_exists = $cache->get('__redalga_session_table__');
         if($table_exists){
             return true;
         }
@@ -217,13 +217,13 @@ class Session{
                 DEFAULT CHARSET=utf8
                 COLLATE=utf8_unicode_ci
             ");
-            $db->query("CREATE INDEX `_amoeba_session_IP_ADDRESS_IDX` USING BTREE ON `_amoeba_session` (IP_ADDRESS)");
-            $db->query("CREATE INDEX `_amoeba_session_CREATED_TIME_IDX` USING BTREE ON `_amoeba_session` (CREATED_TIME)");
-            $db->query("CREATE INDEX `_amoeba_session_LAST_USE_IDX` USING BTREE ON `_amoeba_session` (LAST_USE)");
-            $cache->save('__amoeba_session_table__',true,604800);
+            $db->query("CREATE INDEX `_redalga_session_IP_ADDRESS_IDX` USING BTREE ON `_redalga_session` (IP_ADDRESS)");
+            $db->query("CREATE INDEX `_redalga_session_CREATED_TIME_IDX` USING BTREE ON `_redalga_session` (CREATED_TIME)");
+            $db->query("CREATE INDEX `_redalga_session_LAST_USE_IDX` USING BTREE ON `_redalga_session` (LAST_USE)");
+            $cache->save('__redalga_session_table__',true,604800);
         }
         else{
-            $cache->save('__amoeba_session_table__',true,604800);
+            $cache->save('__redalga_session_table__',true,604800);
         }
     }
 

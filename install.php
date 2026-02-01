@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * Amoeba Framework Installer Script
+ * RedAlgae Framework Installer Script
  * Run after 'composer create-project' to setup new project
  */
 
@@ -29,7 +29,7 @@ function recursiveCopy($src, $dest) {
 
 echo "\n";
 echo "╔════════════════════════════════════════════════════════════╗\n";
-echo "║        Amoeba Framework Installation Starting...           ║\n";
+echo "║        RedAlgae Framework Installation Starting...           ║\n";
 echo "╚════════════════════════════════════════════════════════════╝\n\n";
 
 $projectRoot = getcwd();
@@ -147,7 +147,7 @@ echo "  ✓ Permissions set\n";
 
 echo "\n";
 echo "╔════════════════════════════════════════════════════════════╗\n";
-echo "║          ✓ Amoeba Framework Ready to Use!                 ║\n";
+echo "║          ✓ RedAlgae Framework Ready to Use!                 ║\n";
 echo "╚════════════════════════════════════════════════════════════╝\n";
 echo "\nNext steps:\n";
 echo "  1. Edit config/app.php for application settings\n";
