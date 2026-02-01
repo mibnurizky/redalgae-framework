@@ -1,5 +1,8 @@
 <?php
 namespace RedAlgae\Core;
+use RuntimeException;
+use InvalidArgumentException;
+
 class Csrf
 {
     private string $secret;     // set dari env/config
