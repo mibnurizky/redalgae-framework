@@ -1,5 +1,5 @@
 <?php
-namespace Amoeba\Core;
+namespace RedAlgae\Core;
 
 class Component{
     public function includeComponent($component='',$parameters=array(),$middleware=array(),$direct=true){

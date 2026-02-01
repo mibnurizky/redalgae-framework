@@ -1,5 +1,5 @@
 <?php
-namespace Amoeba\Core;
+namespace RedAlgae\Core;
 
 class Limiter {
     private $prefix = 'limiter_';

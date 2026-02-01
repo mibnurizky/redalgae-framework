@@ -1,5 +1,5 @@
 <?php
-namespace Amoeba\Core;
+namespace RedAlgae\Core;
 /*
  * Helper functions for building a DataTables server-side processing SQL query
  *

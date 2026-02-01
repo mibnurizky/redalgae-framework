@@ -1,5 +1,5 @@
 <?php
-namespace Amoeba\Core;
+namespace RedAlgae\Core;
 class Cache{
 
     private $cache_dir = ROOT_PATH.'/writepath/cache';

@@ -53,6 +53,20 @@ foreach (glob(ROOT_PATH.'/helpers/*.php') as $filename)
     include_once $filename;
 }
 
+/** Include Core Classes - Load all core files directly */
+require_once ROOT_PATH . '/core/component.php';
+require_once ROOT_PATH . '/core/app.php';
+require_once ROOT_PATH . '/core/database.php';
+require_once ROOT_PATH . '/core/model.php';
+require_once ROOT_PATH . '/core/cache.php';
+require_once ROOT_PATH . '/core/session.php';
+require_once ROOT_PATH . '/core/execution.php';
+require_once ROOT_PATH . '/core/middleware.php';
+require_once ROOT_PATH . '/core/language.php';
+require_once ROOT_PATH . '/core/csrf.php';
+require_once ROOT_PATH . '/core/email.php';
+require_once ROOT_PATH . '/core/limiter.php';
+require_once ROOT_PATH . '/core/ssp.php';
 
 spl_autoload_register(function ($class) {
 

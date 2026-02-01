@@ -1,5 +1,5 @@
 <?php
-namespace Amoeba\Core;
+namespace RedAlgae\Core;
 class App{
     public $default_component            = '';
     public $config                       = array();
