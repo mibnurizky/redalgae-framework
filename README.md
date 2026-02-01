@@ -1,143 +1,125 @@
 # Amoeba Framework
 
-A lightweight, flexible PHP framework for building web applications. 
+A lightweight, flexible PHP framework for building modern web applications with simplicity and performance.
+
+[![GitHub](https://img.shields.io/badge/GitHub-mibnurizky%2Famoeba--framework-blue)](https://github.com/mibnurizky/amoeba-framework)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![PHP Version](https://img.shields.io/badge/PHP-%3E%3D8.2-777BB4.svg)](https://www.php.net/)
 
 ## Features
 
-- **Lightweight & Fast** - Minimal overhead, maximum performance
-- **Flexible Routing** - Simple and intuitive URL routing system
-- **Component-Based** - Organize your code with reusable components
-- **Built-in Validation** - Powerful form validation with Rakit
-- **Email Support** - Send emails with PHPMailer
-- **CSRF Protection** - Built-in CSRF token handling
-- **Multi-language Support** - Built-in internationalization
-- **Cache System** - Query and file-based caching
-- **Database Abstraction** - Support for multiple database connections
+- ⚡ **Lightweight & Fast** - Minimal overhead, maximum performance
+- 🛣️ **Flexible Routing** - Simple and intuitive URL routing system
+- 🧩 **Component-Based** - Organize code with reusable components
+- ✅ **Built-in Validation** - Powerful form validation with Rakit
+- 📧 **Email Support** - Send emails easily with PHPMailer
+- 🔒 **CSRF Protection** - Built-in CSRF token handling
+- 🌍 **Multi-language Support** - Built-in internationalization
+- 💾 **Cache System** - Query and file-based caching
+- 🗄️ **Database Abstraction** - Support for multiple database types
 
 ## Requirements
 
-- PHP 7.4 or higher
-- MySQL/MariaDB (or any PDO-supported database)
-- Apache with mod_rewrite enabled (or equivalent on other servers)
+- **PHP 8.2** or higher
+- MySQL/MariaDB or any PDO-supported database
+- Apache with `mod_rewrite` enabled (or equivalent on other servers)
 
 ## Installation
 
-### Method 1: Using Composer (Recommended)
+### Using Composer (Recommended)
 
 ```bash
 composer create-project amoeba/framework my-project
 cd my-project
 ```
 
-This will automatically:
-- Install all dependencies
-- Create necessary directories (config, components, models, views, etc.)
-- Generate default configuration files
-- Set up .htaccess for URL rewriting
+This automatically:
+- Installs all dependencies
+- Creates necessary directories
+- Generates default configuration files
+- Sets up `.htaccess` for URL rewriting
+- Copies the complete framework structure
 
-### Method 2: Manual Setup
+### Manual Setup
 
-1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/amoeba-framework.git my-project
+git clone https://github.com/mibnurizky/amoeba-framework.git my-project
 cd my-project
 composer install
+php install.php
 ```
-
-2. Run setup script:
-```bash
-php create-project.php
-```
-
-## Configuration
-
-### Database Configuration (`config/database.php`)
-
-Edit `config/database.php` with your database credentials:
-
-```php
-<?php
-$connection = array(
-    'default' => array(
-        'driver'        => 'mysql',
-        'host'          => 'localhost',
-        'port'          => '3306',
-        'dbname'        => 'your_database',
-        'username'      => 'your_username',
-        'password'      => 'your_password'
-    )
-);
-?>
-```
-
-### Application Configuration (`config/app.php`)
-
-Edit `config/app.php` to customize your application settings.
-
-⚠️ **Important**: Configuration files are NOT tracked in version control (see `.gitignore`). They contain sensitive database credentials and secret keys.
 
 ## Quick Start
 
-1. **Configure database** - Edit `config/database.php`
-2. **Configure application** - Edit `config/app.php`
-3. **Create a component** - Add file to `components/` folder
-4. **Create a view** - Add PHP template to `views/` folder
-5. **Run development server**:
+1. **Configure Database**
+   ```bash
+   nano config/database.php
+   ```
+
+2. **Configure Application**
+   ```bash
+   nano config/app.php
+   ```
+
+3. **Run Development Server**
    ```bash
    php -S localhost:8000
    ```
-6. **Visit** `http://localhost:8000` in your browser
 
-## Directory Structure
+4. **Visit** `http://localhost:8000` in your browser
+
+## Project Structure
 
 ```
 my-project/
-├── index.php                 # Entry point
-├── core/                     # Framework core files
-│   ├── app.php              # Main application class
-│   ├── autoload.php         # PSR-4 autoloader
-│   ├── cache.php            # Caching system
-│   ├── database.php         # Database connection
-│   ├── model.php            # Base model class
+├── index.php              # Application entry point
+├── core/                  # Framework core files
+│   ├── app.php           # Main application class
+│   ├── autoload.php      # PSR-4 autoloader
+│   ├── database.php      # Database handler
+│   ├── model.php         # Base model class
+│   ├── cache.php         # Caching system
 │   └── ...
-├── config/                   # Configuration files (NOT in version control)
-│   ├── app.php              # Application settings
-│   └── database.php         # Database configuration
-├── components/              # Reusable components
-├── models/                  # Data models
-├── views/                   # View templates
-├── helpers/                 # Helper functions
-├── middleware/              # Custom middleware
-├── public/                  # Static assets (CSS, JS, images)
-├── writepath/              # Writable directory for cache/logs
-│   ├── cache/
-│   └── logs/
-├── .htaccess               # Apache rewrite rules
-├── composer.json           # Composer configuration
-└── create-project.php      # Setup script
+├── config/               # Configuration files (NOT in version control)
+│   ├── app.php           # Application settings
+│   └── database.php      # Database configuration
+├── components/           # Reusable page components
+│   ├── auth/            # Authentication components
+│   ├── web/             # Web components
+│   └── error/           # Error handlers
+├── models/              # Data models
+├── views/               # View templates
+├── helpers/             # Helper functions
+├── middleware/          # Custom middleware
+├── writepath/           # Writable directory
+│   ├── cache/          # Cache files
+│   └── logs/           # Log files
+├── .htaccess           # Apache rewrite rules
+├── composer.json       # Composer configuration
+└── install.php         # Setup script
 ```
 
-## Usage
+## Usage Examples
 
-### Creating a Simple Component
+### Creating a Component
 
-Create a component file at `components/welcome.php`:
+Create `components/home.php`:
 
 ```php
 <?php
-class Welcome {
+class Home {
     public function index() {
         $data = [
             'title' => 'Welcome to Amoeba Framework',
             'message' => 'Hello, World!'
         ];
-        return view('welcome', $data);
+        return view('home', $data);
     }
 }
 ?>
 ```
 
-Create a view at `views/welcome.php`:
+Create `views/home.php`:
 
 ```php
 <!DOCTYPE html>
@@ -151,11 +133,11 @@ Create a view at `views/welcome.php`:
 </html>
 ```
 
-Access via: `http://localhost:8000/welcome`
+Access via: `http://localhost:8000/home`
 
 ### Working with Database
 
-Models inherit from the base Model class:
+Create a model in `models/User.php`:
 
 ```php
 <?php
@@ -166,14 +148,14 @@ use Amoeba\Model;
 class User extends Model {
     protected $table = 'users';
 
-    public function getUsers() {
+    public function getAll() {
         return $this->db->get('users')->fetchAll();
     }
 }
 ?>
 ```
 
-### Using Helpers
+### Using Built-in Helpers
 
 Helpers are auto-loaded:
 
@@ -189,83 +171,76 @@ is_https();
 dd($variable); // Debug dump
 
 // View helpers
-echo view('template', $data);
+view('template', $data);
 ?>
 ```
 
-## Publishing to Packagist
+### Form Validation
 
-To make this framework available via Composer package manager:
+```php
+<?php
+use Rakit\Validation\Validator;
 
-### Step 1: Create GitHub Repository
+$validator = new Validator;
 
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/yourusername/amoeba-framework.git
-git push -u origin main
+$validation = $validator->make($_POST, [
+    'name'  => 'required|min:3',
+    'email' => 'required|email',
+    'password' => 'required|min:6'
+]);
+
+if ($validation->fails()) {
+    $errors = $validation->errors();
+} else {
+    // Process valid data
+}
+?>
 ```
 
-### Step 2: Submit to Packagist
+## Configuration
 
-1. Go to [packagist.org](https://packagist.org)
-2. Click "Submit Package"
-3. Enter your GitHub repository URL
-4. Click "Check" then "Submit"
+### Database Configuration (`config/database.php`)
 
-### Step 3: Setup Auto-Updates (Optional but Recommended)
-
-1. Go to GitHub repository Settings → Webhooks
-2. Add webhook using URL provided by Packagist
-3. Now updates happen automatically on each push
-
-### Step 4: Create Release Tags
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
+```php
+<?php
+$connection = array(
+    'default' => array(
+        'driver'   => 'mysql',
+        'host'     => 'localhost',
+        'port'     => '3306',
+        'dbname'   => 'your_database',
+        'username' => 'your_username',
+        'password' => 'your_password'
+    )
+);
+?>
 ```
 
-Then anyone can install your framework:
+### Application Configuration (`config/app.php`)
 
-```bash
-composer create-project amoeba/framework my-new-project
-```
+Edit settings for your application including:
+- Application name
+- Timezone
+- Debug mode
+- Language settings
+- And more...
 
-## Setup Script
-
-Run the setup script to initialize a new project:
-
-```bash
-php create-project.php
-```
-
-This script:
-- Creates required directories
-- Generates default configuration files
-- Sets up .htaccess for URL rewriting
-- Creates index.php entry point
+⚠️ **Important**: Configuration files contain sensitive data and are NOT tracked in version control. Each environment (development, production) should have its own config.
 
 ## Security Considerations
 
-⚠️ **Important**:
-
-1. **Never commit config files** - They're in `.gitignore` by default and contain:
+1. **Never commit config files** - They're ignored by `.gitignore` and contain:
    - Database credentials
    - CSRF keys
-   - Encryption keys
+   - Secret keys
 
-2. **Generate unique keys**:
+2. **Generate secure keys** for production:
    ```bash
    # Generate CSRF key (32 characters)
    php -r "echo bin2hex(random_bytes(16));"
-
-   # Generate encryption IV (16 characters)
-   php -r "echo bin2hex(random_bytes(8));"
-
-   # Generate encryption key (7 characters)
-   php -r "echo substr(bin2hex(random_bytes(4)), 0, 7);"
+   
+   # Generate encryption key
+   php -r "echo bin2hex(random_bytes(32));"
    ```
 
 3. **Disable debug in production**:
@@ -273,47 +248,66 @@ This script:
    // config/app.php
    'debug' => false,
    'display_errors' => false,
-   'log_errors' => true,
    ```
 
 4. **Set proper file permissions**:
    ```bash
    chmod 755 writepath/
    chmod 755 writepath/cache/
+   chmod 755 writepath/logs/
+   ```
+
+5. **Use HTTPS** in production
+
+6. **Keep dependencies updated**:
+   ```bash
+   composer update
    ```
 
 ## Troubleshooting
 
 ### 404 Error on All Pages
 
-Make sure:
-- `.htaccess` exists in project root
-- Apache `mod_rewrite` is enabled
-- Or use `index.php?page=component-name` format
+- Ensure `.htaccess` exists in project root
+- Enable Apache `mod_rewrite`
+- Or use URL format: `index.php?page=component-name`
 
 ### Database Connection Error
 
 Check `config/database.php`:
-- Host, port, username, password are correct
-- Database exists
-- User has proper privileges
+- Verify hostname, port, username, password
+- Ensure database exists
+- Check user permissions
 
 ### Configuration Files Missing
 
-Run the setup script:
+Run the installer:
 ```bash
-php create-project.php
+php install.php
 ```
+
+## Testing
+
+Run tests with PHPUnit:
+
+```bash
+composer install --dev
+./vendor/bin/phpunit
+```
+
+PHPUnit is included as a dev dependency for testing your code.
 
 ## Contributing
 
-Contributions are welcome! Please:
+Contributions are welcome! Please follow these steps:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+Please follow [PSR-12](https://www.php-fig.org/psr/psr-12/) coding standards.
 
 ## License
 
@@ -321,67 +315,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-For issues, questions, or suggestions:
-- Create an issue on GitHub
-- Email: support@yoursite.com
+- 🐛 Report bugs: [GitHub Issues](https://github.com/mibnurizky/amoeba-framework/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/mibnurizky/amoeba-framework/discussions)
+- 📖 Documentation: Check the [Wiki](https://github.com/mibnurizky/amoeba-framework/wiki)
+
+## Author
+
+**Mohamad Ibnu Rizky**
+- GitHub: [@mibnurizky](https://github.com/mibnurizky)
+- Email: mohamadibnu.r@gmail.com
 
 ---
 
 **Happy coding with Amoeba Framework!** 🦠
-
-- ✓ Simple routing system
-- ✓ MVC architecture
-- ✓ Helper functions
-- ✓ CSRF protection
-- ✓ Email support (PHPMailer)
-- ✓ Input validation
-- ✓ Session management
-- ✓ Caching system
-
-## Creating a New Model
-
-```php
-<?php
-namespace Amoeba\Models;
-
-use Amoeba\Model;
-
-class Post extends Model {
-    protected $table = 'posts';
-    protected $fillable = ['title', 'content', 'author_id'];
-}
-```
-
-## Creating a Component
-
-Create file in `components/` directory:
-
-```php
-<?php
-// components/welcome.php
-
-echo "Welcome to Amoeba Framework!";
-```
-
-Then include it:
-```php
-component('welcome');
-```
-
-## Configuration
-
-Edit configuration files in `config/` directory to customize:
-- Application settings (`app.php`)
-- Database connection (`database.php`)
-
-## Contributing
-
-If you'd like to contribute to Amoeba Framework, please follow PSR-12 coding standards.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For issues and questions, please open an issue on GitHub.
