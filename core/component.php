@@ -58,6 +58,8 @@ class Component{
     public function redirect($component,$parameters=array(),$response_code=0){
         global $APP;
 
+        $component = str_replace('.','-',$component);
+
         if($APP->config['rewrite']){
             if(count($parameters) > 0){
                 $query = http_build_query($parameters);
@@ -77,6 +79,8 @@ class Component{
     }
     public function routeto($component,$parameters=array()){
         global $APP;
+
+        $component = str_replace('.','-',$component);
 
         if($APP->config['rewrite']) {
             if (count($parameters) > 0) {
