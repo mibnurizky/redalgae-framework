@@ -128,6 +128,34 @@ if (!file_exists($htaccessPath)) {
     echo "  ✓ Already exists: .htaccess\n";
 }
 
+// Create .htaccess for protected directories
+$protectedDirs = [
+    'core',
+    'config',
+    'components',
+    'models',
+    'middleware',
+    'helpers',
+    'views',
+    'writepath'
+];
+
+foreach ($protectedDirs as $dir) {
+    $htaccessPath = $projectRoot . '/' . $dir . '/.htaccess';
+    if (!is_dir($projectRoot . '/' . $dir)) {
+        mkdir($projectRoot . '/' . $dir, 0755, true);
+    }
+    
+    if (!file_exists($htaccessPath)) {
+        // Create deny access .htaccess for protected folders
+        $protectContent = "Deny from all\n";
+        file_put_contents($htaccessPath, $protectContent);
+        echo "  ✓ Created: $dir/.htaccess\n";
+    } else {
+        echo "  ✓ Already exists: $dir/.htaccess\n";
+    }
+}
+
 // 6. Create index.php if not exists
 echo "\n📝 Setting up entry point...\n";
 $indexPath = $projectRoot . '/index.php';
