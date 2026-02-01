@@ -154,13 +154,13 @@ class Session{
     }
 
     public function flash_set($key,$data){
-        $key = 'redalga_flash_'.$key;
+        $key = 'redalgae_flash_'.$key;
         $this->set($key,$data);
         return true;
     }
 
     public function flash_get($key){
-        $key = 'redalga_flash_'.$key;
+        $key = 'redalgae_flash_'.$key;
         $data = $this->get($key);
         $this->del($key);
         return $data;
@@ -196,7 +196,7 @@ class Session{
         $db = new Database();
         $cache = new Cache();
 
-        $table_exists = $cache->get('__redalga_session_table__');
+        $table_exists = $cache->get('__redalgae_session_table__');
         if($table_exists){
             return true;
         }
@@ -217,13 +217,13 @@ class Session{
                 DEFAULT CHARSET=utf8
                 COLLATE=utf8_unicode_ci
             ");
-            $db->query("CREATE INDEX `_redalga_session_IP_ADDRESS_IDX` USING BTREE ON `_redalga_session` (IP_ADDRESS)");
-            $db->query("CREATE INDEX `_redalga_session_CREATED_TIME_IDX` USING BTREE ON `_redalga_session` (CREATED_TIME)");
-            $db->query("CREATE INDEX `_redalga_session_LAST_USE_IDX` USING BTREE ON `_redalga_session` (LAST_USE)");
-            $cache->save('__redalga_session_table__',true,604800);
+            $db->query("CREATE INDEX `_redalgae_session_IP_ADDRESS_IDX` USING BTREE ON `_redalgae_session` (IP_ADDRESS)");
+            $db->query("CREATE INDEX `_redalgae_session_CREATED_TIME_IDX` USING BTREE ON `_redalgae_session` (CREATED_TIME)");
+            $db->query("CREATE INDEX `_redalgae_session_LAST_USE_IDX` USING BTREE ON `_redalgae_session` (LAST_USE)");
+            $cache->save('__redalgae_session_table__',true,604800);
         }
         else{
-            $cache->save('__redalga_session_table__',true,604800);
+            $cache->save('__redalgae_session_table__',true,604800);
         }
     }
 

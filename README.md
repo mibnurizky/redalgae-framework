@@ -2,7 +2,7 @@
 
 A lightweight, flexible PHP framework for building modern web applications with simplicity and performance.
 
-[![GitHub](https://img.shields.io/badge/GitHub-mibnurizky%2Fredalga--framework-blue)](https://github.com/mibnurizky/redalga-framework)
+[![GitHub](https://img.shields.io/badge/GitHub-mibnurizky%2Fredalgae--framework-blue)](https://github.com/mibnurizky/redalgae-framework)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PHP Version](https://img.shields.io/badge/PHP-%3E%3D8.2-777BB4.svg)](https://www.php.net/)
 
@@ -29,7 +29,7 @@ A lightweight, flexible PHP framework for building modern web applications with 
 ### Using Composer (Recommended)
 
 ```bash
-composer create-project redalga/framework my-project
+composer create-project redalgae/framework my-project
 cd my-project
 ```
 
@@ -43,7 +43,7 @@ This automatically:
 ### Manual Setup
 
 ```bash
-git clone https://github.com/mibnurizky/redalga-framework.git my-project
+git clone https://github.com/mibnurizky/redalgae-framework.git my-project
 cd my-project
 composer install
 php install.php
@@ -315,9 +315,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- 🐛 Report bugs: [GitHub Issues](https://github.com/mibnurizky/redalga-framework/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/mibnurizky/redalga-framework/discussions)
-- 📖 Documentation: Check the [Wiki](https://github.com/mibnurizky/redalga-framework/wiki)
+- 🐛 Report bugs: [GitHub Issues](https://github.com/mibnurizky/redalgae-framework/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/mibnurizky/redalgae-framework/discussions)
+- 📖 Documentation: Check the [Wiki](https://github.com/mibnurizky/redalgae-framework/wiki)
 
 ## Author
 

@@ -1,5 +1,5 @@
 <?php
-namespace Amoeba\Core;
+namespace RedAlgae\Core;
 class Csrf
 {
     private string $secret;     // set dari env/config
