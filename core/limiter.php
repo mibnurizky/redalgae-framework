@@ -8,34 +8,35 @@ class Limiter {
     public $key = '';
     public $maxattempt = 0;
     public $decaysecond = 60;
+    private $session = null;
+    private $cache = null;
 
-    public function __construct($key, $maxattempt, $decaysecond, $use_session = true) {
+    public function __construct($key, $maxattempt, $decaysecond, $use_session = false) {
         $this->key = $this->prefix . $key;
         $this->maxattempt = $maxattempt;
         $this->decaysecond = $decaysecond;
         $this->use_session = $use_session;
+        $this->session = new Session(true);
+        $this->cache = new Cache();
     }
 
     private function getData() {
-        global $CACHE, $SESSION;
-        return $this->use_session ? $SESSION->get($this->key) : $CACHE->get($this->key);
+        return $this->use_session ? $this->session->get($this->key) : $this->cache->get($this->key);
     }
 
     private function saveData($data) {
-        global $CACHE, $SESSION;
         if ($this->use_session) {
-            $SESSION->set($this->key, $data);
+            $this->session->set($this->key, $data);
         } else {
-            $CACHE->save($this->key, $data, $this->cache_ttl);
+            $this->cache->save($this->key, $data, $this->cache_ttl);
         }
     }
 
     private function deleteData() {
-        global $CACHE, $SESSION;
         if ($this->use_session) {
-            $SESSION->del($this->key);
+            $this->session->del($this->key);
         } else {
-            $CACHE->delete($this->key);
+            $this->cache->delete($this->key);
         }
     }
 
