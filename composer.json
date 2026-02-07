@@ -33,8 +33,7 @@
             "helpers/general_helper.php",
             "helpers/serverside_helper.php",
             "helpers/smtp_notif_helper.php",
-            "helpers/text_helper.php",
-            "helpers/view_helper.php"
+            "helpers/text_helper.php"
         ]
     },
     "scripts": {

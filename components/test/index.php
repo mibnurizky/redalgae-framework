@@ -1,5 +1,0 @@
-<?php
-
-COMPONENT->includeView('testing');
-
-?>

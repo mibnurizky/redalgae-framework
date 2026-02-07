@@ -2,7 +2,7 @@
 
 function smtp_notif_send($subject,$body,$to=array(),$cc=array(),$bcc=array(),$attachments=array(),&$error=""){
     global $APP;
-    $email = new Email();
+    $email = new \RedAlgae\Core\Email();
 
     $host = $APP->config['smtp']['host'];
     $port = $APP->config['smtp']['port'];

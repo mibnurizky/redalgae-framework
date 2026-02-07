@@ -2,14 +2,14 @@
 
 function csrf_get_token($key){
     global $APP;
-    $csrf = new Csrf($APP->config['csrf_key']);
+    $csrf = new \RedAlgae\Core\Csrf($APP->config['csrf_key']);
     $token = $csrf->getToken($key);
     return $token;
 }
 
 function csrf_validate_token($key,$token){
     global $APP;
-    $csrf = new Csrf($APP->config['csrf_key']);
+    $csrf = new \RedAlgae\Core\Csrf($APP->config['csrf_key']);
 
     if($csrf->validate($key,$token)){
         return true;

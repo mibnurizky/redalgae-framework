@@ -84,7 +84,6 @@ $CSession = new \RedAlgae\Core\Session(true);
 $CExecution = new \RedAlgae\Core\Execution();
 $CMiddleware = new \RedAlgae\Core\Middleware();
 $CLanguage = new \RedAlgae\Core\Language();
-$CLimiter = new \RedAlgae\Core\Limiter();
 
 /** Defined */
 define('COMPONENT',$CComponent);
@@ -96,7 +95,6 @@ define('SESSION',$CSession);
 define('EXECUTION',$CExecution);
 define('MIDDLEWARE',$CMiddleware);
 define('LANGUAGE',$CLanguage);
-define('LIMITER',$CLimiter);
 $GLOBALS['COMPONENT'] = $CComponent;
 $GLOBALS['APP'] = $CApp;
 $GLOBALS['DATABASE'] = $CDatabase;
@@ -105,7 +103,6 @@ $GLOBALS['CACHE'] = $CCache;
 $GLOBALS['SESSION'] = $CSession;
 $GLOBALS['EXECUTION'] = $CExecution;
 $GLOBALS['MIDDLEWARE'] = $CMiddleware;
-$GLOBALS['LIMITER'] = $CLimiter;
 
 $phpinput = file_get_contents('php://input');
 $jsoninput = json_decode($phpinput,true);

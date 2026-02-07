@@ -8,7 +8,7 @@ class Component{
             $component = APP->default_component;
         }
 
-        $component = str_replace('.','/',$component);
+        $component = str_replace('-','/',$component);
 
         $component_file = ROOT_PATH.'/components/'.$component.'.php';
         if(file_exists($component_file)){
