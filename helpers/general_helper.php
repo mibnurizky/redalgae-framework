@@ -79,13 +79,22 @@ function isset_multi(array $array, array $keys): bool
     return true;
 }
 
-function additional(array $array, array $keys, $default=''){
+function optional_array(array $array, array $keys, $default=''){
     if(isset_multi($array,$keys)){
         $temp = $array;
         foreach ($keys as $key) {
             $temp = $temp[$key];
         }
         return $temp;
+    }
+    else{
+        return $default;
+    }
+}
+
+function optional($variable,$default=''){
+    if(isset($variable)){
+        return $variable;
     }
     else{
         return $default;
@@ -107,12 +116,12 @@ function current_component(){
 }
 
 function is_part_of_current_component($string){
-    $term = explode('.',$string);
-    $current = explode('.',current_component());
+    $term = explode('-',$string);
+    $current = explode('-',current_component());
 
     $is_partof = array();
     foreach($term as $key => $value){
-        if($value == additional($current,[$key])){
+        if($value == optional_array($current,[$key])){
             $is_partof[] = 'Y';
         }
         else{

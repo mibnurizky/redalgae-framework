@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteRule ^inc/.*$ index.php
+RedirectMatch 404 /\.git
+RewriteCond %{REQUEST_URI} !^/assets/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php [QSA,L]
-RedirectMatch 404 /\.git
