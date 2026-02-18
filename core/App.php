@@ -8,7 +8,7 @@ class App{
     public $http_host                    = '';
 
     public function __construct(){
-        include ROOT_PATH.'/config/app.php';
+        include BASE_PATH.'/config/app.php';
 
         $this->default_component = $app_config['default_page'];
         $this->config = $app_config;

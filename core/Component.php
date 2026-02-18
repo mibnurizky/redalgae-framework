@@ -10,7 +10,7 @@ class Component{
 
         $component = str_replace('-','/',$component);
 
-        $component_file = ROOT_PATH.'/components/'.$component.'.php';
+        $component_file = BASE_PATH.'/components/'.$component.'.php';
         if(file_exists($component_file)){
 
             MIDDLEWARE->runMiddleware($middleware,'before',$parameters);
@@ -34,8 +34,8 @@ class Component{
     public function includeView($view='',$data=array(),$return=false){
 
         $view = str_replace('.','/',$view);
-        $view_file = ROOT_PATH.'/views/'.$view.'.php';
-        $view_lang = ROOT_PATH.'/lang/'.APP->config['default_language'].'/views/'.$view.'.php';
+        $view_file = BASE_PATH.'/views/'.$view.'.php';
+        $view_lang = BASE_PATH.'/lang/'.APP->config['default_language'].'/views/'.$view.'.php';
         if(file_exists($view_file)){
             ob_start();
             extract($data);
@@ -97,7 +97,7 @@ class Component{
     public function isComponent($component){
         $component = str_replace('.','/',$component);
 
-        $component_file = ROOT_PATH.'/components/'.$component.'.php';
+        $component_file = BASE_PATH.'/components/'.$component.'.php';
         if(file_exists($component_file)){
             return true;
         }

@@ -2,7 +2,7 @@
 namespace RedAlgae\Core;
 class Cache{
 
-    private $cache_dir = ROOT_PATH.'/writepath/cache';
+    private $cache_dir = BASE_PATH.'/writepath/cache';
 
 
     public function __construct(array $options = array())

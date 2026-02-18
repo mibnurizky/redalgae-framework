@@ -14,8 +14,8 @@ class Language{
             }
 
             $langpath = str_replace('.','/',$langpath);
-            if(file_exists(ROOT_PATH.'/lang/'.$langcode.'/'.$langpath.'.php')){
-                include ROOT_PATH.'/lang/'.$langcode.'/'.$langpath.'.php';
+            if(file_exists(BASE_PATH.'/lang/'.$langcode.'/'.$langpath.'.php')){
+                include BASE_PATH.'/lang/'.$langcode.'/'.$langpath.'.php';
             }
 
             $this->lang_path = $langpath_ori;
@@ -31,8 +31,8 @@ class Language{
             }
 
             $langpath = str_replace('.','/',$langpath);
-            if(file_exists(ROOT_PATH.'/lang/'.$langcode.'/'.$langpath.'.php')){
-                include ROOT_PATH.'/lang/'.$langcode.'/'.$langpath.'.php';
+            if(file_exists(BASE_PATH.'/lang/'.$langcode.'/'.$langpath.'.php')){
+                include BASE_PATH.'/lang/'.$langcode.'/'.$langpath.'.php';
             }
 
             $this->lang_path = $langpath;

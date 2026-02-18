@@ -3,7 +3,7 @@ namespace RedAlgae\Core;
 class Middleware{
     public function includeMiddleware($middleware=''){
         $middleware = str_replace('.','/',$middleware);
-        $middleware_file = ROOT_PATH.'/middleware/'.$middleware.'.php';
+        $middleware_file = BASE_PATH.'/middleware/'.$middleware.'.php';
         if(file_exists($middleware_file)){
             include_once $middleware_file;
         }
@@ -46,7 +46,7 @@ class Middleware{
     public function runMiddlewareGeneral($run='before',$component=''){
         global $COMPONENT;
 
-        $middleware_file = ROOT_PATH.'/middleware/.general.php';
+        $middleware_file = BASE_PATH.'/middleware/.general.php';
         if(file_exists($middleware_file)){
             include $middleware_file;
 

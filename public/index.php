@@ -4,7 +4,7 @@ session_start();
 
 /** Define */
 define('ROOT_PATH',$_SERVER['DOCUMENT_ROOT']);
-define('BASE_PATH',$_SERVER['DOCUMENT_ROOT'].'../');
+define('BASE_PATH', dirname(__DIR__));
 
 require_once BASE_PATH . '/config/app.php';
 
@@ -56,21 +56,33 @@ foreach (glob(BASE_PATH.'/helpers/*.php') as $filename)
 
 spl_autoload_register(function ($class) {
 
-    $prefix = 'RedAlgae\\';
-    $baseDir = BASE_PATH.'/';
+    $prefix  = 'RedAlgae\\';
+    $baseDir = BASE_PATH . '/';
 
     if (strncmp($prefix, $class, strlen($prefix)) !== 0) {
         return;
     }
 
     $relativeClass = substr($class, strlen($prefix));
-    $file = $baseDir . str_replace('\\', '/', $relativeClass) . '.php';
-    if(!is_file($file)){
-        $file = $baseDir . str_replace('\\', '/', strtolower($relativeClass)) . '.php';
+    $parts         = explode('\\', $relativeClass);
+    $className     = array_pop($parts); // Nama class tetap as-is
+
+    // Coba folder as-is dulu
+    $dirAsIs   = $baseDir . implode('/', $parts);
+    $fileAsIs  = $dirAsIs . '/' . $className . '.php';
+
+    if (is_file($fileAsIs)) {
+        require_once $fileAsIs;
+        return;
     }
 
-    if (is_file($file)) {
-        require_once $file;
+    // Fallback: folder lowercase, nama class tetap
+    $dirLower  = $baseDir . strtolower(implode('/', $parts));
+    $fileLower = $dirLower . '/' . $className . '.php';
+
+    if (is_file($fileLower)) {
+        require_once $fileLower;
+        return;
     }
 });
 
@@ -105,61 +117,11 @@ $GLOBALS['SESSION'] = $CSession;
 $GLOBALS['EXECUTION'] = $CExecution;
 $GLOBALS['MIDDLEWARE'] = $CMiddleware;
 
-$phpinput = file_get_contents('php://input');
-$jsoninput = json_decode($phpinput,true);
-if(!empty($jsoninput)){
-    $_REQUEST = array_merge($_REQUEST,$jsoninput);
-}
-else{
-    $phpinputarray = array();
-    parse_str($phpinput, $phpinputarray);
-    if(is_array($phpinputarray) AND count($phpinputarray) > 0){
-        $_REQUEST = array_merge($_REQUEST,$phpinputarray);
-    }
+$router = new \RedAlgae\Core\Router();
+
+foreach (glob(BASE_PATH.'/routes/*.php') as $filename)
+{
+    require_once $filename;
 }
 
-$path = ltrim($_SERVER['REQUEST_URI'], '/');
-$explode = explode('/',$path);
-$explode = explode('?',$explode[0]);
-
-if($CApp->config['rewrite']){
-    if(empty($explode[0])){
-        $CComponent->redirect($CApp->default_component);
-    }
-}
-else{
-    if(empty($_GET['c'])){
-        $CComponent->redirect($CApp->default_component);
-    }
-}
-
-$CExecution->start('GENERAL');
-if($CApp->config['rewrite']) {
-    $GLOBALS['CURRENT_COMPONENT'] = $explode[0];
-    $CMiddleware->runMiddlewareGeneral('before',$explode[0]);
-}
-else{
-    $GLOBALS['CURRENT_COMPONENT'] = $_GET['c'];
-    $CMiddleware->runMiddlewareGeneral('before',$_GET['c']);
-}
-
-if($CApp->config['rewrite']){
-    $pathfix = str_replace('-','.',$explode[0]);
-    $CComponent->includeComponent($explode[0]);
-}
-else{
-    $CComponent->includeComponent($_GET['c']);
-}
-
-if($CApp->config['rewrite']) {
-    $CMiddleware->runMiddlewareGeneral('after',$explode[0]);
-}
-else{
-    $CMiddleware->runMiddlewareGeneral('after',$_GET['c']);
-}
-$CExecution->end('GENERAL');
-if($CApp->show_execution_time){
-    echo "<pre>";
-    print_r($CExecution->calculate_all());
-}
-?>
+$router->dispatch();

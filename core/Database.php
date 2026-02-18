@@ -23,12 +23,12 @@ class Database{
     }
 
     public function connectionlist(){
-        include ROOT_PATH.'/config/database.php';
+        include BASE_PATH.'/config/database.php';
         return $connection[$this->instance];
     }
 
     public function setInstance($instance){
-        include ROOT_PATH.'/config/database.php';
+        include BASE_PATH.'/config/database.php';
 
         if(array_key_exists($instance, $connection)){
             $this->instance = $instance;
